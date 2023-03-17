@@ -1,0 +1,22 @@
+<%= form_with model: @property do |form| %>
+
+	<div>
+		<%= form.label :name %>
+		<%= form.text_field :name %>
+	</div>
+
+	<div>
+		<%= form.label :location %>
+		<%= form.text_field :location %>
+	</div>
+
+	<div>
+		<%= form.label :price %>
+		<%= form.text_field :price %>
+	</div>
+
+	<div>
+		<%= form.submit %>
+	</div>
+
+<% end %>

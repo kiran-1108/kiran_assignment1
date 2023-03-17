@@ -1,0 +1,45 @@
+<div class="col-lg-8 mx-auto">
+  <div class="card shadow mt-5">
+    <div class="card-header grad ">
+        <h1 class="card-title mx-5  "> Property List</h1>
+    </div>
+    <div class="d-grid gap-2 d-md-block mt-3 mx-3">
+        <%= link_to "Create new property",new_property_path , class:"btn btn-primary" %>
+    </div>
+      <table class="table  mb-3 mt-3 mx-3">
+       <tr>
+      	<th>Name</th>
+      	<th>Location</th>
+      	<th>Price</th>
+      	<% if current_user.admin? %>
+         	<th>Edit</th>
+         	<th>Destroy</th>		
+         <% end %>
+      	<% if current_user.superadmin? %>
+         	<th>Approve</th>
+         	<th>Edit</th>
+         	<th>Destroy</th>
+      	<% end %>
+      	</tr>
+      	<% @properties.each do |post|%>
+      	<tr>
+      		<td><%= post.name %></td>
+            <td><%= post.location %></td>
+            <td><%= post.price %></td>
+            <% if current_user.admin? %>
+              <td><%= link_to "Edit", edit_property_path(post),class:"btn btn-outline-info" %></td>
+              <td><%= link_to "Destroy", property_path(post), data: { turbo_method: :delete,
+              turbo_confirm: "Are you sure?"},class:"btn btn-outline-danger" %></td>
+            <% end %>
+            <% if current_user.superadmin? %>
+              <td><%= link_to "Approve",property_path(post), method: :put, form: {"aproved" => true },class:"btn btn-outline-success"   %></td>
+              <td><%= link_to "Edit", edit_property_path(post),class:"btn btn-outline-info" %></td>
+              <td>
+              <%= link_to "Destroy", property_path(post), data: { turbo_method: :delete,
+              turbo_confirm: "Are you sure?"} ,class:"btn btn-outline-danger"%></td>
+            <% end %>
+      	</tr>
+      	<% end %>
+      </table>     
+   </div>
+</div>                                               

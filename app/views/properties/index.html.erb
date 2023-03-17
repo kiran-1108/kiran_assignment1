@@ -1,0 +1,49 @@
+<div class="col-lg-8 mx-auto">
+   <h1>Properties</h1>
+   <div >
+        <%= link_to "Create new property",new_property_path , class:"btn btn-primary" %>
+   </div>
+   <div id="target"></div>
+   <div class ="property mt-3">
+      <% @properties.each do |property|%>
+        <div class="card shadow mb-3 color">
+           <div class="card-body mx-auto">
+            <p>
+            <strong>Property Name:</strong>
+            <%= property.name %>
+            </p><br>
+            <p>
+            <strong>Property price:</strong>
+            <%= property.price %>
+            </p><br>
+           <p>
+            <strong>Property Location:</strong>
+            <%= property.location %>
+            </p><br>
+
+            <p>
+            <% if property.image.present?%>
+            <strong>Property image:</strong><br>
+              <%= image_tag property.image,width:"250px"; %>
+            <% end %>
+            </p><br>
+            <% if current_user.admin? %>
+               <p class="mx-3">
+                 <%= link_to "Edit", edit_property_path(property),class:"btn btn-outline-info" %> |
+                 <%= link_to "Destroy", property_path(property), data: { turbo_method: :delete,
+                 turbo_confirm: "Are you sure?"},class:"btn btn-outline-danger" %>
+               </p>
+            <% end %>
+            <% if current_user.superadmin? %>
+               <p>
+                  <%= link_to "Approve",property_path(property),class:"btn btn-outline-success"%> |
+                 <%= link_to "Edit", edit_property_path(property),class:"btn btn-outline-info" %> |
+                 <%= link_to "Destroy", property_path(property), data: { turbo_method: :delete,
+                 turbo_confirm: "Are you sure?"},class:"btn btn-outline-danger" %>
+               </p>
+            <% end %>
+           </div>
+        </div>
+      <% end %>
+   </div>
+</div>                                               

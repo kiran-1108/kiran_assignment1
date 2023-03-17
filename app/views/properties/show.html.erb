@@ -1,0 +1,26 @@
+<div class="col-lg-8 mx-auto">
+  <div class="card shadow mt-5">
+      <div class="card-header">
+        <h1 class="card-title">Approve Property</h1>
+      </div>
+
+      <div class="card-body col-lg-8 mx-auto">
+        <strong>Property Name:</strong>
+        <%= @property.name %>
+    </div>
+
+      <div class="card-body col-lg-8 mx-auto">
+      <strong>Property Price:</strong>
+      <%= @property.price %>
+        </div><br>
+
+      <div class="card-body col-lg-8 mx-auto">
+        <% if @property.image.present?%>
+        <%= image_tag @property.image ,width:"250px";%>
+        <% end %>
+      </div><br>
+    <div>
+      &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<%= link_to 'Back',root_path,class:"btn btn-outline-primary mb-3" %>
+    </div>
+    </div>
+  </div>
